@@ -7,13 +7,16 @@ authors = ["painternovice <painternovice@gmail.com>"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-leptos = { version = "0.8", features = ["csr", "nightly"] }
+leptos = { version = "0.8", features = ["csr", "hydrate","islands", "nightly"] }
 leptos_meta = { version = "0.8" }
 leptos_router = { version = "0.8", features = ["nightly"] }
 console_log = "1"
 log = "0.4"
 console_error_panic_hook = "0.1"
 gloo-timers = "0.3.0"
+
+[features]
+hydrate = ["leptos/hydrate"]
 
 # utils
 # strum = { version = "0.25", features = ["derive", "strum_macros"] }
@@ -31,3 +34,7 @@ opt-level = 'z'
 lto = true
 codegen-units = 1
 panic = "abort"
+
+
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"']
