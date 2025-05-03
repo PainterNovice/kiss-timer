@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 use leptos_meta::*;
 use leptos_router::{components::*, path};
+use leptos::svg::view;
 
 // Modules
 mod components;
@@ -8,6 +9,8 @@ mod pages;
 
 // Top-Level pages
 use crate::pages::home::Home;
+use crate::pages::timer::Timer;
+use crate::pages::not_found::NotFound;
 
 /// An app router which renders the homepage and handles 404's
 #[component]
@@ -26,8 +29,9 @@ pub fn App() -> impl IntoView {
         <Meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <Router>
-            <Routes fallback=|| view! { NotFound }>
+            <Routes fallback=NotFound >
                 <Route path=path!("/") view=Home />
+                <Route path=path!("/timer") view=Timer />
             </Routes>
         </Router>
     }

@@ -50,3 +50,8 @@ button {
   text-align: center;
   margin: 2rem;
 }
+
+.time-display h1 {
+  font-size: 20vw; /* Responsive viewport-based sizing */
+  font-family: monospace; /* Better for number displays */
+}
