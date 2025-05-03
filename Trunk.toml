@@ -1,14 +1,14 @@
 [build]
 # The index HTML file to drive the bundling process.
-target = "index.html"
+# target = "index.html"
 # Build in release mode.
-release = false
+# release = false
 # Use a custom cargo profile. Overrides the default chosen by cargo. Ignored if the 'index.html' has one configured.
 # cargo_profile = ""
 # The output dir for all final assets.
-dist = "dist"
+# dist = "dist"
 # The public URL from which assets are to be served.
-public_url = "/"
+# public_url = "/"
 # Whether to include hash values in the output file names.
 filehash = false
 # Whether to inject scripts (and module preloads) into the finalized output.
@@ -26,23 +26,23 @@ inject_scripts = true
 # An optional cargo profile to use
 # cargo_profile = "release-trunk"
 
-[watch]
+# [watch]
 # Paths to watch. The `build.target`'s parent folder is watched by default.
-watch = []
+# watch = []
 # Paths to ignore.
-ignore = []
+# ignore = []
 
 [serve]
 # The address to serve on.
-addresses = ["127.0.0.1"]
+# addresses = ["127.0.0.1"]
 # The port to serve on.
-port = 3000
+port = 8000
 # Aliases to serve, typically found in an /etc/hosts file.
 # aliases = ["http://localhost.mywebsite.com"]
 # Disable the reverse DNS lookup during startup
 # disable_address_lookup = false
 # Open a browser tab once the initial build is complete.
-open = false
+# open = false
 # Whether to disable fallback to index.html for missing files.
 # no_spa = false
 # Disable auto-reload of the web app.
