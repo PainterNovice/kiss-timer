@@ -49,8 +49,8 @@ pub fn App() -> impl IntoView {
 
         <Router>
             <Routes fallback=NotFound>
-                <Route path=path!("/") view=Home />
-                <Route path=path!("/timer") view=Timer />
+                <Route path=path!("kiss-timer/") view=Home />
+                <Route path=path!("kiss-timer/timer") view=Timer />
             </Routes>
         </Router>
     }
