@@ -1,7 +1,5 @@
-use gloo_timers::callback::Interval;
 use leptos::prelude::*;
 use leptos_router::hooks::use_location;
-use leptos_router::params::Params;
 use std::time::Duration;
 
 /// Default Home Page
@@ -15,8 +13,8 @@ pub fn Home() -> impl IntoView {
         parse_duration_from_url(&time_str).unwrap_or(1500)
     };
 
-    let (remaining, set_remaining) = create_signal(initial_time());
-    let (is_running, set_is_running) = create_signal(true);
+    let (remaining, set_remaining) = signal(initial_time());
+    let (is_running, _set_is_running) = signal(true);
 
     Effect::new(move |_| {
         if is_running.get() && remaining.get() > 0 {

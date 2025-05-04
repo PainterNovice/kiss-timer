@@ -1,16 +1,13 @@
 use leptos::prelude::*;
-use leptos::svg::view;
 use leptos_meta::*;
 use leptos_router::{components::*, path};
 
 // Modules
-mod components;
 mod pages;
 
 // Top-Level pages
 use crate::pages::home::Home;
 use crate::pages::not_found::NotFound;
-use crate::pages::timer::Timer;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
@@ -52,7 +49,6 @@ pub fn App() -> impl IntoView {
                 view! { <NotFound /> }
             }>
                 <Route path=path!("kiss-timer/") view=Home />
-                <Route path=path!("kiss-timer/timer") view=Timer />
             </Routes>
         </Router>
     }
