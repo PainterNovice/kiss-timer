@@ -1,8 +1,14 @@
 # KISS Timer
 
-KISS Timer is a simple countdown timer application built with Rust and Leptos. It allows users to set a timer for various durations and provides a clean interface for tracking time.
+KISS Timer is a simple countdown timer application built with Rust and Leptos. It allows users to set a timer for various durations trought url input.
 
-## Features
+## Usage
+
+kiss-timer/?90        (90 seconds)
+
+kiss-timer/?1:30      (1 minute 30 seconds)
+
+kiss-timer/?1:05:30   (1 hour, 5 minutes, 30 seconds)
 
 
 ## Installation
@@ -12,7 +18,7 @@ To run the KISS Timer application locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/kiss-timer.git
+   git clone https://github.com/painternovice/kiss-timer.git
    cd kiss-timer
    ```
 
@@ -33,16 +39,14 @@ To run the KISS Timer application locally, follow these steps:
 4. **Local dev:**
 
    ```bash
-   trunk serve --port 3000
+   trunk serve --port 3000 --public-url "/kiss-timer/"
    ```
 
 5. **Open your browser:**
 
-   Navigate to `http://localhost:8000` (or the port specified in your configuration) to view the application.
+   Navigate to `http://localhost:3000/kiss-timer/` or `http://127.0.0.1:3000/kiss-timer/` to view the application.
 
-## Usage
 
-- The timer will start counting down, and the remaining time will be displayed.
 
 ## Deployment
 

@@ -10,14 +10,16 @@ pub fn Home() -> impl IntoView {
     // Countdown timer logic
     let initial_time = move || {
         let time_str = location.search.get();
-        parse_duration_from_url(&time_str).unwrap_or(1500)
+        parse_duration_from_url(&time_str).unwrap_or(1500) as isize
     };
 
-    let (remaining, set_remaining) = signal(initial_time());
+    let (remaining, set_remaining) = signal(initial_time() as isize);
     let (is_running, _set_is_running) = signal(true);
 
+    let is_overtime = Memo::new(move |_| remaining.get() < 0);
+
     Effect::new(move |_| {
-        if is_running.get() && remaining.get() > 0 {
+        if is_running.get() {
             let handle = set_interval_with_handle(
                 move || set_remaining.update(|t| *t -= 1),
                 Duration::from_secs(1),
@@ -30,9 +32,11 @@ pub fn Home() -> impl IntoView {
 
     // Timer formatting
     let formatted_time = move || {
-        let minutes = remaining.get() / 60;
-        let seconds = remaining.get() % 60;
-        format!("{:02}:{:02}", minutes, seconds)
+        let total_seconds = remaining.get();
+        let minutes = total_seconds / 60;
+        let seconds = total_seconds % 60; // Use abs() for seconds to ensure they are positive
+
+        format!("{:02}:{:02}", minutes.abs(), seconds.abs())
     };
 
     view! {
@@ -57,26 +61,12 @@ pub fn Home() -> impl IntoView {
 
             <div class="container">
 
-                <h1>"KISS Timer"</h1>
-                <br />
-                <div class="quick-links">
-                    <a href="/kiss-timer/timer/?5:00" class="duration-link">
-                        "5 Minutes"
-                    </a>
-                    <br />
-                    <a href="/kiss-timer/timer/?15:00" class="duration-link">
-                        "15 Minutes"
-                    </a>
-                    <br />
-                    <a href="/kiss-timer/timer/?25:00" class="duration-link">
-                        "25 Minutes"
-                    </a>
-                </div>
                 <div class="timer">
                     <div class="time-display">
-                        <h1>{formatted_time}</h1>
+                        <h1 class:overtime=is_overtime>{formatted_time}</h1>
                     </div>
                 </div>
+
             </div>
         </ErrorBoundary>
     }

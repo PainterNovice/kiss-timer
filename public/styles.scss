@@ -42,7 +42,7 @@ button {
   margin: var(--size-6);
 }
 
-body > picture,
+body>picture,
 button {
   display: block;
   margin-left: auto;
@@ -52,6 +52,28 @@ button {
 }
 
 .time-display h1 {
-  font-size: 20vw; /* Responsive viewport-based sizing */
-  font-family: monospace; /* Better for number displays */
+  font-size: 20vw;
+  /* Responsive viewport-based sizing */
+  font-family: monospace;
+  /* Better for number displays */
+}
+
+.overtime {
+  color: #ff6b6b;
+  /* Light red color */
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
