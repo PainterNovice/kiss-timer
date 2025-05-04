@@ -26,20 +26,21 @@ pub fn Home() -> impl IntoView {
 
             <div class="container">
 
-
                 <h1>"KISS Timer"</h1>
-                <br/>
+                <br />
                 <div class="quick-links">
-                <a href="/timer/?5:00" class="duration-link">
-                    "5 Minutes"
-                </a><br/>
-                <a href="/timer/?15:00" class="duration-link">
-                    "15 Minutes"
-                </a><br/>
-                <a href="/timer/?25:00" class="duration-link">
-                    "25 Minutes"
-                </a>
-            </div>
+                    <a href="/kiss-timer/timer/?5:00" class="duration-link">
+                        "5 Minutes"
+                    </a>
+                    <br />
+                    <a href="/kiss-timer/timer/?15:00" class="duration-link">
+                        "15 Minutes"
+                    </a>
+                    <br />
+                    <a href="/kiss-timer/timer/?25:00" class="duration-link">
+                        "25 Minutes"
+                    </a>
+                </div>
 
             </div>
         </ErrorBoundary>
