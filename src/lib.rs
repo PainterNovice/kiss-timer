@@ -48,7 +48,9 @@ pub fn App() -> impl IntoView {
         <Meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <Router>
-            <Routes fallback=NotFound>
+            <Routes fallback=|| {
+                view! { <NotFound /> }
+            }>
                 <Route path=path!("kiss-timer/") view=Home />
                 <Route path=path!("kiss-timer/timer") view=Timer />
             </Routes>
