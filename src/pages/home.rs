@@ -33,10 +33,20 @@ pub fn Home() -> impl IntoView {
     // Timer formatting
     let formatted_time = move || {
         let total_seconds = remaining.get();
-        let minutes = total_seconds / 60;
-        let seconds = total_seconds % 60; // Use abs() for seconds to ensure they are positive
+        let hours = (total_seconds / 3600).abs();
+        let remainder_after_hh = total_seconds % 3600;
+        let minutes = remainder_after_hh / 60;
+        let seconds = remainder_after_hh % 60; // Use abs() for seconds to ensure they are positive
 
-        format!("{:02}:{:02}", minutes.abs(), seconds.abs())
+        match hours {
+            0 => format!("{:02}:{:02}", minutes.abs(), seconds.abs()),
+            _ => format!(
+                "{:02}:{:02}:{:02}",
+                hours.abs(),
+                minutes.abs(),
+                seconds.abs()
+            ),
+        }
     };
 
     view! {
@@ -54,25 +64,21 @@ pub fn Home() -> impl IntoView {
                             .map(|(_, e)| view! { <li>{e.to_string()}</li> })
                             .collect_view()
                     }}
-
                 </ul>
             }
         }>
 
             <div class="container">
-
                 <div class="timer">
                     <div class="time-display">
                         <h1 class:overtime=is_overtime>{formatted_time}</h1>
                     </div>
                 </div>
-
             </div>
         </ErrorBoundary>
     }
 }
 
-// Add this helper function outside the component
 fn parse_duration_from_url(time_str: &str) -> Option<usize> {
     let parts: Vec<&str> = time_str.split(':').collect();
     match parts.len() {

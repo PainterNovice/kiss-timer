@@ -10,20 +10,20 @@
 /* ------------------------------------------------------------ */
 
 body {
-  font-family: sans-serif;
-  text-align: center;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-evenly;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 h1,
@@ -32,48 +32,53 @@ h3,
 h4,
 h5,
 h6 {
-  text-align: center;
-  margin: 0 auto;
-  padding: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 p,
 button {
-  margin: var(--size-6);
+    margin: var(--size-6);
 }
 
 body>picture,
 button {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  margin: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin: 2rem;
+}
+
+.time-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .time-display h1 {
-  font-size: 20vw;
-  /* Responsive viewport-based sizing */
-  font-family: monospace;
-  /* Better for number displays */
+    font-size: 20vw;
+    font-family: monospace;
 }
 
 .overtime {
-  color: #ff6b6b;
-  /* Light red color */
-  animation: pulse 1s infinite;
+    color: #ff6b6b;
+    /* Light red color */
+    animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 1;
+    }
 
-  50% {
-    opacity: 0.5;
-  }
+    50% {
+        opacity: 0.5;
+    }
 
-  100% {
-    opacity: 1;
-  }
+    100% {
+        opacity: 1;
+    }
 }
