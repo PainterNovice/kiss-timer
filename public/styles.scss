@@ -16,14 +16,19 @@ body {
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+.controls {
+    display: flex;
+    align-content: flex-end;
+}
 .buttons {
     display: flex;
-    justify-content: space-evenly;
+    align-items: flex-end;
 }
 
 h1,
@@ -42,7 +47,7 @@ button {
     margin: var(--size-6);
 }
 
-body>picture,
+body > picture,
 button {
     display: block;
     margin-left: auto;

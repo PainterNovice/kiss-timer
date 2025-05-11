@@ -14,9 +14,11 @@ pub fn Home() -> impl IntoView {
     };
 
     let (remaining, set_remaining) = signal(initial_time() as isize);
-    let (is_running, _set_is_running) = signal(true);
+    let (is_running, set_is_running) = signal(true);
 
     let is_overtime = Memo::new(move |_| remaining.get() < 0);
+
+    let pause_btn = move || if is_running() { "Pause" } else { "Start" };
 
     Effect::new(move |_| {
         if is_running.get() {
@@ -36,7 +38,7 @@ pub fn Home() -> impl IntoView {
         let hours = (total_seconds / 3600).abs();
         let remainder_after_hh = total_seconds % 3600;
         let minutes = remainder_after_hh / 60;
-        let seconds = remainder_after_hh % 60; // Use abs() for seconds to ensure they are positive
+        let seconds = remainder_after_hh % 60;
 
         match hours {
             0 => format!("{:02}:{:02}", minutes.abs(), seconds.abs()),
@@ -50,7 +52,7 @@ pub fn Home() -> impl IntoView {
     };
 
     view! {
-        <ErrorBoundary fallback=|errors| {
+        <ErrorBoundary fallback=move |errors| {
             view! {
                 <h1>"Uh oh! Something went wrong!"</h1>
 
@@ -67,11 +69,28 @@ pub fn Home() -> impl IntoView {
                 </ul>
             }
         }>
-
             <div class="container">
                 <div class="timer">
                     <div class="time-display">
                         <h1 class:overtime=is_overtime>{formatted_time}</h1>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="button">
+                        <button on:click= move |_| {
+                            if !is_running.get() {
+                                set_is_running.set(true);
+                            } else {
+                                set_is_running.set(false);
+                            }
+                            }>{move || pause_btn()}</button>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="button">
+                        <button on:click= move |_| {
+                            set_remaining.set(initial_time() as isize);
+                        }>"Reset"</button>
                     </div>
                 </div>
             </div>
