@@ -18,7 +18,7 @@ pub fn Home() -> impl IntoView {
 
     let is_overtime = Memo::new(move |_| remaining.get() < 0);
 
-    let pause_btn = move || if is_running() { "Pause" } else { "Start" };
+    let pause_btn = move || if is_running() { "Pause" } else { "Resume" };
 
     Effect::new(move |_| {
         if is_running.get() {
@@ -72,23 +72,23 @@ pub fn Home() -> impl IntoView {
             <div class="container">
                 <div class="timer">
                     <div class="time-display">
-                        <h1 class:overtime=is_overtime>{formatted_time}</h1>
+                        <h1 class:overtime=is_overtime class:pause=move || !is_running.get()>
+                            {formatted_time}
+                        </h1>
                     </div>
                 </div>
                 <div class="controls">
                     <div class="button">
-                        <button on:click= move |_| {
+                        <button on:click=move |_| {
                             if !is_running.get() {
                                 set_is_running.set(true);
                             } else {
                                 set_is_running.set(false);
                             }
-                            }>{move || pause_btn()}</button>
+                        }>{move || pause_btn()}</button>
                     </div>
-                </div>
-                <div class="controls">
                     <div class="button">
-                        <button on:click= move |_| {
+                        <button on:click=move |_| {
                             set_remaining.set(initial_time() as isize);
                         }>"Reset"</button>
                     </div>
